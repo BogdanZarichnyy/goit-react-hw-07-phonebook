@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { getContactsThunk, addContactsThunk, deleteContactsThunk } from "../thunks/operations";
+import { getContactsThunk, addContactsThunk, deleteContactsThunk } from "../thunks/contactsThunk";
 
 const contactsSlice = createSlice({
     name: "contactsSlice",

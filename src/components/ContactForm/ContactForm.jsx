@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 
 import { selectContacts } from 'redux/selectors';
-import { addContactsThunk } from 'redux/thunks/operations';
+import { addContactsThunk } from 'redux/thunks/contactsThunk';
 
 import css from './ContactForm.module.css'
 
@@ -13,8 +13,8 @@ export const ContactForm = () => {
     const handleAddName = event => {
         event.preventDefault();
 
-        const { value: name } = event.target.elements.name;
-        const { value: phone } = event.target.elements.number;
+        const formData = new FormData(event.target);
+        const { name, phone } = Object.fromEntries(formData);
 
         const contact = {
             name,
@@ -38,7 +38,7 @@ export const ContactForm = () => {
                 title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan" required />
             
             <label className={css.label} htmlFor="phone" >Number</label>
-            <input className={css.input} id="phone" type="tel" name="number" pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+            <input className={css.input} id="phone" type="tel" name="phone" pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
                 title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +" placeholder="000-000-0000" required />
 
             <button className={css.button} type="submit">Add contact</button>

@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { selectIsLoading } from 'redux/selectors';
+import { selectIsLoading, selectError } from 'redux/selectors';
 
 import { ContactForm } from './ContactForm/ContactForm';
 import { ContactList } from './ContactList/ContactList';
@@ -9,6 +9,7 @@ import css from './App.module.css';
 
 export const App = () => {
     const isLoadingStore = useSelector(selectIsLoading);
+    const errorStore = useSelector(selectError);
 
     return (
         <div className={css.data}>
@@ -22,6 +23,8 @@ export const App = () => {
             <Filter />
 
             {isLoadingStore && <p>Loading data</p>}
+
+            {errorStore && <p>Error: {errorStore}</p>}
 
             <ContactList />
 
